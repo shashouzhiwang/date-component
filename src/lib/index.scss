@@ -1,0 +1,150 @@
+@import "./init.fun";
+$width: 100%;
+$cellHeight: 30px;
+html,body{
+  font-size: 10px;
+  padding: 0;
+  margin: 0;
+}
+ul,li{
+  margin: 0;
+  padding: 0;
+  list-style: none;
+}
+.mark{
+  position: fixed;
+  left: 0;
+  top: 0;
+  z-index: 100;
+  width: 100%;
+  height: 100%;
+  overflow: hidden;
+  text-align: center;
+  font-size: 1.6rem;
+  transition: background-color .3s ease-in-out;
+  -webkit-transition: background-color .3s ease-in-out;
+  background-color: rgba(37,38,45,0);
+  &.active{
+    background-color: rgba(37,38,45,.4);
+  }
+  .active-sheet{
+    width: 100%;
+    position: absolute;
+    z-index: 600;
+    bottom:0;
+    background: white;
+    transition: all .3s ease-in-out;
+    -webkit-transition: all .3s ease-in-out;
+    transform: translate3d(0,273px,0);
+    -webkit-transform: translate3d(0,273px,0);
+    &.active{
+      transform: translate3d(0,0,0);
+      -webkit-transform: translate3d(0,0,0);
+    }
+    .active-sheet-controll{
+      width: 100%;
+      >div{
+        float: left;
+        width: 50%;
+        font-size: 1.4rem;
+        height: 3.2rem;
+        line-height: 3.2rem;
+        text-align: center;
+      }
+      .active-sheet-controll-cancle{
+
+      }
+      .active-sheet-controll-confirm{
+        color: white;
+        background: #1e47db;
+      }
+    }
+    .active-sheet-body{
+      padding: 1rem 0;
+      .active-sheet-mask-top{
+        position: absolute;
+        top: 3.2rem;
+        background: -webkit-gradient(linear,left bottom,left top,from(hsla(0,0%,100%,.4)),to(hsla(0,0%,100%,.8)));
+        background: linear-gradient(0deg,hsla(0,0%,100%,.4),hsla(0,0%,100%,.8));
+        z-index: 10;
+        width: 100%;
+        height: 68px;
+        pointer-events: none;
+        -webkit-transform: translateZ(0);
+        transform: translateZ(0);
+        &:before{
+          content: "";
+          display: block;
+          position: absolute;
+          -webkit-transform-origin: 0 0;
+          transform-origin: 0 0;
+        }
+        &:after{
+          border-bottom: 1px solid #ebebeb;
+          left: 0;
+          top: 68px;
+          width: 100%;
+          -webkit-transform-origin: 0 bottom;
+          transform-origin: 0 bottom;
+
+          content: "";
+          display: block;
+          position: absolute;
+        }
+      }
+      .active-sheet-mask-bottom{
+        position: absolute;
+        bottom: 1px;
+        background: -webkit-gradient(linear,left top,left bottom,from(hsla(0,0%,100%,.4)),to(hsla(0,0%,100%,.8)));
+        background: linear-gradient(180deg,hsla(0,0%,100%,.4),hsla(0,0%,100%,.8));
+
+        z-index: 10;
+        width: 100%;
+        height: 68px;
+        pointer-events: none;
+        -webkit-transform: translateZ(0);
+        transform: translateZ(0);
+
+        &:before{
+          border-top: 1px solid #ebebeb;
+          left: 0;
+          top: 0;
+          width: 100%;
+          -webkit-transform-origin: 0 top;
+          transform-origin: 0 top;
+
+          content: "";
+          display: block;
+          position: absolute;
+        }
+      }
+      .active-sheet-body-col{
+        position: relative;
+        top: 0;
+        bottom: 0;
+        left: 0;
+        width: $width/3;
+        float: left;
+        height: 5 * $cellHeight;
+        overflow: hidden;
+        >ul.active-sheet-body-col-scroll,>div{
+          margin-top: 60px;
+          padding-bottom: 120px;
+          box-sizing: border-box;
+          position: absolute;
+          width: 100%;
+          .active-sheet-body-col-cell{
+            text-align: center;
+            height: $cellHeight;
+            line-height: $cellHeight;
+          }
+        }
+      }
+    }
+  }
+}
+
+
+.clearfix{
+  @include clearfix();
+}

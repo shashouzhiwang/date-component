@@ -1,0 +1,16 @@
+{
+  "status": "SUCCESS",
+  "data": [
+    {
+      "code": "disorder",
+      "name": "无序消息"
+    },
+    {
+      "code": "order",
+      "name": "有序消息"
+    }
+  ],
+  "pageInfo":{
+
+  }
+}

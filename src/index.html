@@ -1,0 +1,53 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0, user-scalable=0, minimum-scale=1.0, maximum-scale=1.0">
+    <title>package</title>
+    <!--<link rel="stylesheet" href="skin/default/font/iconfont.css">-->
+    <link rel="stylesheet" href="main/main.min.css">
+
+</head>
+<body>
+<div id="show-active-sheet">显示日历</div>
+<div class="mark" style="display: none;">
+    <div class="active-sheet">
+        <div class="active-sheet-controll clearfix">
+            <div class="active-sheet-controll-cancle">取消</div>
+            <div class="active-sheet-controll-confirm">确定</div>
+        </div>
+        <div class="active-sheet-body clearfix">
+            <div class="active-sheet-mask-top"></div>
+            <div class="active-sheet-body-col" id="active-sheet-body-col-year">
+                <ul class="active-sheet-body-col-scroll">
+                </ul>
+            </div>
+            <div class="active-sheet-body-col" id="active-sheet-body-col-month">
+                <ul class="active-sheet-body-col-scroll">
+                </ul>
+            </div>
+            <div class="active-sheet-body-col" id="active-sheet-body-col-day">
+                <ul class="active-sheet-body-col-scroll">
+                </ul>
+            </div>
+            <div class="active-sheet-mask-bottom"></div>
+        </div>
+    </div>
+</div>
+
+<script src="../node_modules/jquery/dist/jquery.min.js"></script>
+<script src="../node_modules/iscroll/build/iscroll-probe.js"></script>
+<script src="./main/main.min.js"></script>
+<script>
+    $(function() {
+        $("#show-active-sheet").click(function () {
+            date.init({
+                //        "confirm": function(date){
+                //            alert();
+                //        }
+            });
+        })
+    })
+</script>
+</body>
+</html>

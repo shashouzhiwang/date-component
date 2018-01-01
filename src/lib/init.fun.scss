@@ -1,0 +1,61 @@
+//1-white,2-semi,3-grey,4-ash,5-blue,6-green,7-red,8-line,9-lightgrey,10-yellow,11-light,12-lightyellow
+$color: (
+        (white,#fff), (semi, #333), (grey, #929292), (ash, #999), (blue, #82acdd), (green, #09bb07),
+        (red, #e64340),(line,#e5e5e5),(lightgrey,#f2f3f5),(yellow,#fac370),(light,#fcfcfc),(lightyellow,#fff9b2)
+);
+
+@mixin opacity($opacity) {
+  opacity: $opacity;
+  filter: alpha(opacity=$opacity * 100);
+}
+
+@mixin transition-property($property1...) {
+  -webkit-transition-property: $property1;
+  -moz-transition-property: $property1;
+  -ms-transition-property: $property1;
+  -o-transition-property: $property1;
+  transition-property: $property1;
+}
+
+@mixin transition-delay($delay...) {
+  -webkit-transition-delay: $delay;
+  -moz-transition-delay: $delay;
+  -ms-transition-delay: $delay;
+  -o-transition-delay: $delay;
+  transition-delay: $delay;
+}
+
+@mixin transition-duration($transition-duration) {
+  -webkit-transition-duration: $transition-duration;
+  -moz-transition-duration: $transition-duration;
+  -ms-transition-duration: $transition-duration;
+  -o-transition-duration: $transition-duration;
+  transition-duration: $transition-duration;
+}
+
+@mixin transition-timing-function($transition-timing-function) {
+  -webkit-transition-timing-function: $transition-timing-function;
+  -moz-transition-timing-function: $transition-timing-function;
+  -ms-transition-timing-function: $transition-timing-function;
+  -o-transition-timing-function: $transition-timing-function;
+  transition-timing-function: $transition-timing-function;
+}
+
+@mixin transform($transfrom) {
+  -webkit-transform: $transfrom;
+  -moz-transform: $transfrom;
+  -ms-transform: $transfrom;
+  -o-transform: $transfrom;
+  transform: $transfrom;
+}
+
+@mixin clearfix(){
+  &:after,
+  &:before{
+    content: " ";
+    display: table;
+  }
+  &:after{
+    clear: both;
+  }
+}
