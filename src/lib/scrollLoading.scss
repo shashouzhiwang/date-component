@@ -1,15 +1,31 @@
 @import "./init.fun";
-
-.wrapper{
+#refresh-dom {
+  height: 40px;
+  line-height: 40px;
+  text-align: center;
+  background-color: #fafafa;
+  font-size: 14px;
+  .icon {
+    width: 20px;
+    height: 20px;
+    vertical-align: middle;
+    &.loading{
+      -webkit-animation: loadding 1s steps(12, end) infinite;
+      animation: loadding 1s steps(12, end) infinite;
+    }
+  }
+}
+.wrapper {
   position: absolute;
   top: 0;
   bottom: 0;
   left: 0;
   width: 100%;
-  .scroll{
+
+  .scroll {
     position: absolute;
     z-index: 1;
-    -webkit-tap-highlight-color: rgba(0,0,0,0);
+    -webkit-tap-highlight-color: rgba(0, 0, 0, 0);
     width: 100%;
     -webkit-transform: translateZ(0);
     -moz-transform: translateZ(0);
@@ -26,13 +42,13 @@
     -ms-text-size-adjust: none;
     -o-text-size-adjust: none;
     text-size-adjust: none;
-    >div.content{
+    > div.content {
       list-style: none;
       padding: 0;
       margin: 0;
       width: 100%;
       text-align: left;
-      >div{
+      > div {
         padding: 0 10px;
         height: 40px;
         line-height: 40px;
@@ -42,5 +58,24 @@
         font-size: 14px;
       }
     }
+  }
+
+}
+
+@keyframes loadding {
+  0% {
+    -webkit-transform: rotate3d(0, 0, 1, 0deg);
+  }
+  100% {
+    -webkit-transform: rotate3d(0, 0, 1, 360deg);
+  }
+}
+
+@-webkit-keyframes loadding {
+  0% {
+    -webkit-transform: rotate3d(0, 0, 1, 0deg);
+  }
+  100% {
+    -webkit-transform: rotate3d(0, 0, 1, 360deg);
   }
 }
