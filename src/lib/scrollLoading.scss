@@ -15,12 +15,14 @@
     }
   }
 }
+
 .wrapper {
   position: absolute;
-  top: 0;
+  top: 100px;
   bottom: 0;
   left: 0;
   width: 100%;
+  border-top:1px solid #333;
 
   .scroll {
     position: absolute;
