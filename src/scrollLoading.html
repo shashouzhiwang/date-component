@@ -9,10 +9,23 @@
 
 </head>
 <body>
-<div id="refresh"></div>
+<div style="height: 50px;line-height: 50px;text-align: center;    z-index: 2;
+    position: relative;
+    background: #CD235C;
+    color: white;
+    font-size: 16px;">refresh</div>
 <div id="wrapper" class="wrapper">
     <div id="scroll" class="scroll">
-
+        <div id="refresh-dom">
+            <svg class="icon loading" aria-hidden="true" style="height: 20px; display: none;">
+                <use xlink:href="#icon-loading"></use>
+            </svg>
+            <svg class="icon pull-down" aria-hidden="true" style="height: 20px;">
+                <use xlink:href="#icon-xialashuaxin"></use>
+            </svg>
+            <span id='refresh-dom-tip'>asfdaf</span>
+        </div>
+        <!--<div id="scroll-top" style="height: 50px">下拉刷新</div>-->
         <div class="content">
             <div>dfsd</div>
             <div>dfsd</div>

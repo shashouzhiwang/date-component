@@ -1,7 +1,7 @@
 @import "./init.fun";
 #refresh-dom {
-  height: 40px;
-  line-height: 40px;
+  height: 50px;
+  line-height: 50px;
   text-align: center;
   background-color: #fafafa;
   font-size: 14px;
@@ -9,6 +9,7 @@
     width: 20px;
     height: 20px;
     vertical-align: middle;
+    transition: all .3s ease-in-out;
     &.loading{
       -webkit-animation: loadding 1s steps(12, end) infinite;
       animation: loadding 1s steps(12, end) infinite;
@@ -18,7 +19,7 @@
 
 .wrapper {
   position: absolute;
-  top: 100px;
+  top: 50px;
   bottom: 0;
   left: 0;
   width: 100%;
@@ -44,6 +45,18 @@
     -ms-text-size-adjust: none;
     -o-text-size-adjust: none;
     text-size-adjust: none;
+
+    transform: translate(0px, -50px) translateZ(0px);
+    #scroll-top{
+      display: block;
+      line-height: 50px;
+      text-align: center;
+      font-size: 18px;
+      //background-color: #eaeaea;
+      //transition-timing-function: cubic-bezier(0.1, 0.57, 0.1, 1);
+      //transition-duration: 0ms;
+      //transform: translate(0px, -50px) translateZ(0px);
+    }
     > div.content {
       list-style: none;
       padding: 0;
