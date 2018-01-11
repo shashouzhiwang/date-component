@@ -2,54 +2,92 @@ var scroll = {};
 (function (context) {
     context.init = function() {
         // context.preY  = 0;
+        context.is_loadding = false;
+        context.is_refresh_loading = false;
         context.default = {
-            "state": false,
+            "state": "",
             "loadingcallback":function() {
                 console.log('loadingcallback');
-            },
+                context.load.refresh();
+            }
         };
+        context.refreshDomHeight = $("#refresh-dom").height();
         context.load = new IScroll('#wrapper',
             {probeType: 1, mouseWheel: true, bounce: true,
-                bounceTime: 200, preventDefault: false, startY: -50  });
+                bounceTime: 200, preventDefault: false, startY: -context.refreshDomHeight  });
         // context.addRefreshDom();
         document.addEventListener('click', function (e) { e.preventDefault(); }, false);
 
         context.load.on("scrollStart",function(){
-            // if(this.y === this.options.startY){
-                context.is_scrolling=true;
-                console.log("scrollStart");
-            // }
+            //开始触发下拉刷新
+            if(this.y === -context.refreshDomHeight){
+                context.is_refresh_loading = true;
+                console.log("scrollStart", this.y >> 0);
+            }
+
+            //开始触发分页加载
+            if(this.y >> 0 === this.maxScrollY){
+                this.maxScrollY -= 50;
+                context.is_paging_loading = true;
+                // $("#wrapper").css("bottom", "0");
+            }
         });
 
         context.load.on("scroll", function(){
-            if(this.y >> 0 > 20){
-                context.default.state = true;
+            var y = this.y >> 0;
+            if(y >= 30 && context.default.state !== "flip"){
+                context.default.state = "flip";
                 $("#refresh-dom-tip").html("释放刷新");
                 utils.rotate3d(document.querySelector("#refresh-dom .icon").style, 180);
-            }else{
+            }else if(y < 30 && context.default.state === "flip"){
+                context.default.state = "";
                 $("#refresh-dom-tip").html("下拉加载");
-                context.default.state = false;
                 utils.rotate3d(document.querySelector("#refresh-dom .icon").style, 0);
             }
-            console.log("scroll", this.y >> 0, context.default.state);
+            console.log("scroll", this.y >> 0, context.default.state, this);
         });
 
 
         context.load.on("scrollEnd", function(){
             console.log("scrollEnd", this.y >> 0);
+            var y = this.y >> 0;
             $("#refresh-dom").find(".pull-down").show();
             $("#refresh-dom").find(".loading").hide();
-            if(context.is_scrolling){
-                context.is_scrolling = false;
-                if(this.y >> 0 === 0){
+            if(context.default.state !== "flip" && y > this.options.startY){
+                this.scrollTo(0, this.options.startY, 300);
+            } else if(context.default.state === "flip"){
+                context.default.state = "load";
+                if(context.is_refresh_loading && !is_loadding){
+                    is_loadding=true;
+                    options.scrollTopLoad && options.scrollTopLoad();
+                }
+            }
+
+            if(context.is_refresh_loading){
+                    context.is_refresh_loading = false;
+                if(y === 0){
                     $("#refresh-dom").find(".pull-down").hide();
                     $("#refresh-dom").find(".loading").show();
                     setTimeout(function() {
-                        context.load.scrollTo(0, -50, 500);
+                        context.load.scrollTo(0, -context.refreshDomHeight, 500);
                     }, 2000);
                     context.default.loadingcallback();
                 }else{
-                    context.load.scrollTo(0, -50, 500);
+                    if(y <= 0 && y >= -context.refreshDomHeight){
+                        context.load.scrollTo(0, -context.refreshDomHeight, 500);
+                    }else{
+                        //上拉加载
+                        if(context.is_paging_loading){
+                            context.is_paging_loading = false;
+                            context.load.scrollTo(0, this.maxScrollY + 50, 500);
+                            this.maxScrollY += 50;
+                            console.log("----------000");
+                        }
+                    }
+                }
+            }else{
+                if(y === 0){
+                    context.load.scrollTo(0, -context.refreshDomHeight, 500);
                 }
             }
 
@@ -62,13 +100,6 @@ var scroll = {};
         context.load.on('refresh', function(){
             // if(context.is_scrolling){
             console.log("------");
-                if(this.y >> 0 === -50){
-                    console.log("scrollEnd------");
-                    context.default.loadcallback();
-                }else{
-                    context.load.scrollTo(0, -50, 500);
-                }
-            // }
         })
     };
 

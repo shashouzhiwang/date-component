@@ -20,7 +20,7 @@
 .wrapper {
   position: absolute;
   top: 50px;
-  bottom: 0;
+  bottom: -50px;
   left: 0;
   width: 100%;
   border-top:1px solid #333;
@@ -71,6 +71,23 @@
         border-top: 1px solid #fff;
         background-color: #fafafa;
         font-size: 14px;
+      }
+    }
+    .loadingMore-dom{
+      height: 50px;
+      line-height: 50px;
+      text-align: center;
+      background-color: #fafafa;
+      font-size: 14px;
+      .icon {
+        width: 20px;
+        height: 20px;
+        vertical-align: middle;
+        transition: all .3s ease-in-out;
+        &.loading{
+          -webkit-animation: loadding 1s steps(12, end) infinite;
+          animation: loadding 1s steps(12, end) infinite;
+        }
       }
     }
   }
